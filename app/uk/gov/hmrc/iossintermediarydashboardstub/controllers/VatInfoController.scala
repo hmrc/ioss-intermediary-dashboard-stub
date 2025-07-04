@@ -18,7 +18,7 @@ package uk.gov.hmrc.iossintermediarydashboardstub.controllers
 
 import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent, ControllerComponents}
-import uk.gov.hmrc.iossintermediarydashboardstub.models.{DesAddress, VatCustomerInfo}
+import uk.gov.hmrc.iossintermediarydashboardstub.models.{DesAddress, VatCustomerInfo, IndividualName}
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import java.time.LocalDate
@@ -49,6 +49,18 @@ class VatInfoController @Inject()(cc: ControllerComponents) extends BackendContr
       deregistrationDecisionDate = None
     )
   }
+
+  private val successfulFullIndividualResponse = {
+    VatCustomerInfo(
+      registrationDate = Some(LocalDate.of(2020, 1, 1)),
+      desAddress = DesAddress("1 The Street", Some("Some Town"), None, None, None, Some("BT11 1AA"), "GB"),
+      partyType = None,
+      organisationName = None,
+      individual = Some(IndividualName(Some("first"), Some("middle"), Some("last"))),
+      singleMarketIndicator = true,
+      deregistrationDecisionDate = None
+    )
+  }
   
 
   def getInformation(vrn: String): Action[AnyContent] = Action {
@@ -56,6 +68,7 @@ class VatInfoController @Inject()(cc: ControllerComponents) extends BackendContr
       case "900000001" => NotFound
       case "800000001" => InternalServerError
       case "700000001" => Ok(Json.toJson(successfulSparseResponse))
+      case "700000002" => Ok(Json.toJson(successfulFullIndividualResponse))
       case _ => Ok(Json.toJson(successfulFullResponse))
     }
   }
