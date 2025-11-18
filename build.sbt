@@ -1,3 +1,4 @@
+import play.sbt.routes.RoutesKeys
 import uk.gov.hmrc.DefaultBuildSettings
 
 ThisBuild / majorVersion := 0
@@ -10,6 +11,11 @@ lazy val microservice = Project("ioss-intermediary-dashboard-stub", file("."))
     // https://www.scala-lang.org/2021/01/12/configuring-and-suppressing-warnings.html
     // suppress warnings in generated routes files
     scalacOptions += "-Wconf:src=routes/.*:s",
+    RoutesKeys.routesImport ++= Seq(
+      "java.time.LocalDate",
+      "uk.gov.hmrc.iossintermediarydashboardstub.models._",
+      "uk.gov.hmrc.iossintermediarydashboardstub.models.etmp._"
+    )
   )
   .settings(CodeCoverageSettings.settings *)
   .settings(PlayKeys.playDefaultPort := 10180)

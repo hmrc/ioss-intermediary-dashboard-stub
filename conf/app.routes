@@ -1,3 +1,6 @@
 # microservice specific routes
 
-GET         /vat/customer/vrn/:vrn/information                  uk.gov.hmrc.iossintermediarydashboardstub.controllers.VatInfoController.getInformation(vrn: String)
+GET         /vat/customer/vrn/:vrn/information                                          uk.gov.hmrc.iossintermediarydashboardstub.controllers.VatInfoController.getInformation(vrn: String)
+
+GET         /enterprise/obligation-data/:idType/:idNumber/:regimeType                   uk.gov.hmrc.iossintermediarydashboardstub.controllers.EtmpController.getObligations(idType: String, idNumber: String, regimeType: String, dateRange: ObligationsDateRange, status: Option[String])
+
