@@ -18,11 +18,9 @@ package uk.gov.hmrc.iossintermediarydashboardstub.models.etmp
 
 import play.api.libs.json.{Json, OFormat}
 
-case class EtmpObligation(
-                           identification: EtmpObligationIdentification,
-                           obligationDetails: Seq[EtmpObligationDetails])
+case class EtmpObligationIdentification(referenceNumber: String)
 
-object EtmpObligation {
-
-  implicit val format: OFormat[EtmpObligation] = Json.format[EtmpObligation]
+object EtmpObligationIdentification {
+  
+  implicit val format: OFormat[EtmpObligationIdentification] = Json.format[EtmpObligationIdentification]
 }

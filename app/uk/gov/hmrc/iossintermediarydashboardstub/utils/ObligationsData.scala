@@ -16,13 +16,31 @@
 
 package uk.gov.hmrc.iossintermediarydashboardstub.utils
 
-import uk.gov.hmrc.iossintermediarydashboardstub.models.etmp.{EtmpObligation, EtmpObligationDetails, EtmpObligations, EtmpObligationsFulfilmentStatus}
+import uk.gov.hmrc.iossintermediarydashboardstub.models.etmp.{EtmpObligation, EtmpObligationDetails, EtmpObligationIdentification, EtmpObligations, EtmpObligationsFulfilmentStatus}
 
 object ObligationsData {
 
   val defaultSuccessfulResponse: EtmpObligations = EtmpObligations(
     obligations = Seq(
       EtmpObligation(
+        identification = EtmpObligationIdentification("IM9001234567"),
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Open,
+            periodKey = "25AL"
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = "25AK"
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = "25AJ"
+          )
+        )
+      ),
+      EtmpObligation(
+        identification = EtmpObligationIdentification("IM9001234568"),
         obligationDetails = Seq(
           EtmpObligationDetails(
             status = EtmpObligationsFulfilmentStatus.Open,

@@ -24,7 +24,7 @@ import play.api.mvc.Headers
 import play.api.test.Helpers.{ACCEPT, AUTHORIZATION, CONTENT_TYPE, DATE, GET, contentAsJson, defaultAwaitTimeout, status}
 import play.api.test.{FakeRequest, Helpers}
 import uk.gov.hmrc.iossintermediarydashboardstub.base.SpecBase
-import uk.gov.hmrc.iossintermediarydashboardstub.models.etmp.{EtmpObligation, EtmpObligationDetails, EtmpObligations, EtmpObligationsFulfilmentStatus, ObligationsDateRange}
+import uk.gov.hmrc.iossintermediarydashboardstub.models.etmp.{EtmpObligation, EtmpObligationDetails, EtmpObligationIdentification, EtmpObligations, EtmpObligationsFulfilmentStatus, ObligationsDateRange}
 import uk.gov.hmrc.iossintermediarydashboardstub.utils.Formatters.dateTimeFormatter
 import uk.gov.hmrc.iossintermediarydashboardstub.utils.JsonSchemaHelper
 
@@ -54,6 +54,8 @@ class EtmpControllerSpec extends SpecBase {
       val regimeType: String = "IOSS"
       val obligationFulfilmentStatus: String = "O"
       val referenceNumber: String = "IN9001234567"
+      val clientAIossNumber: String = "IM9001234567"
+      val clientBIossNumber: String = "IM9001234568"
       val firstDateOfYear: LocalDate = LocalDate.of(2025, 1, 1)
       val lastDateOfYear: LocalDate = LocalDate.of(2025, 12, 31)
       val dateRange: ObligationsDateRange = ObligationsDateRange(firstDateOfYear, lastDateOfYear)
@@ -87,6 +89,24 @@ class EtmpControllerSpec extends SpecBase {
         val successfulObligationsResponse = EtmpObligations(
           obligations = Seq(
             EtmpObligation(
+              identification = EtmpObligationIdentification(clientAIossNumber),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AL"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = "25AK"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = "25AJ"
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification(clientBIossNumber),
               obligationDetails = Seq(
                 EtmpObligationDetails(
                   status = EtmpObligationsFulfilmentStatus.Open,
