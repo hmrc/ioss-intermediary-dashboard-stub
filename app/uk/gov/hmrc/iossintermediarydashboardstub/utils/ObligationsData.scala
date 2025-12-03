@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.iossintermediarydashboardstub.utils
 
-import uk.gov.hmrc.iossintermediarydashboardstub.models.etmp.{EtmpObligation, EtmpObligationDetails, EtmpObligationIdentification, EtmpObligations, EtmpObligationsFulfilmentStatus}
+import uk.gov.hmrc.iossintermediarydashboardstub.models.etmp.{EtmpObligation, EtmpObligationDetails, EtmpObligationIdentification, EtmpObligations, EtmpObligationsFulfilmentStatus, ObligationsDateRange}
 
 import java.time.{LocalDate, Month}
 import java.time.Month._
@@ -29,7 +29,24 @@ object ObligationsData {
   val defaultSuccessfulResponse: EtmpObligations = EtmpObligations(
     obligations = Seq(
       EtmpObligation(
-        identification = EtmpObligationIdentification("IM9001234567"),
+        identification = EtmpObligationIdentification("IM9001144771"),
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Open,
+            periodKey = "25AL"
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Open,
+            periodKey = "25AK"
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = "25AJ"
+          )
+        )
+      ),
+      EtmpObligation(
+        identification = EtmpObligationIdentification("IM9001144772"),
         obligationDetails = Seq(
           EtmpObligationDetails(
             status = EtmpObligationsFulfilmentStatus.Open,
@@ -46,7 +63,24 @@ object ObligationsData {
         )
       ),
       EtmpObligation(
-        identification = EtmpObligationIdentification("IM9001234568"),
+        identification = EtmpObligationIdentification("IM9001144773"),
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Open,
+            periodKey = "25AL"
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Open,
+            periodKey = "25AK"
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = "25AJ"
+          )
+        )
+      ),
+      EtmpObligation(
+        identification = EtmpObligationIdentification("IM9001144774"),
         obligationDetails = Seq(
           EtmpObligationDetails(
             status = EtmpObligationsFulfilmentStatus.Open,
@@ -480,6 +514,61 @@ object ObligationsData {
       case OCTOBER => "AJ"
       case NOVEMBER => "AK"
       case DECEMBER => "AL"
+    }
+  }
+
+  def generateObligationsResponse(
+                                   clientsIossNumbers: Seq[String],
+                                   dateRange: ObligationsDateRange
+                                 ): EtmpObligations = {
+    EtmpObligations(
+      obligations =
+        for {
+          clientIossNumber <- clientsIossNumbers
+        } yield {
+          EtmpObligation(
+            identification = EtmpObligationIdentification(clientIossNumber),
+            obligationDetails =
+              for {
+                eachPeriod <- getAllPeriodsWithinDateRange(dateRange)
+              } yield {
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = eachPeriod
+                )
+              }
+          )
+        }
+    )
+  }
+
+  private def getAllPeriodsWithinDateRange(dateRange: ObligationsDateRange): Seq[String] = {
+
+    val dateRangeYears: Seq[Int] = dateRange.from.getYear.to(dateRange.to.getYear).toList
+    val dateRangeMonths: Seq[Int] = dateRange.from.getMonthValue.to(dateRange.to.getMonthValue).toList
+
+    for {
+      year <- dateRangeYears
+      month <- dateRangeMonths
+    } yield {
+      val shortYear: String = year.toString.substring(2, 4)
+
+      val aMonth = month match {
+        case 1 => "AA"
+        case 2 => "AB"
+        case 3 => "AC"
+        case 4 => "AD"
+        case 5 => "AE"
+        case 6 => "AF"
+        case 7 => "AG"
+        case 8 => "AH"
+        case 9 => "AI"
+        case 10 => "AJ"
+        case 11 => "AK"
+        case 12 => "AL"
+      }
+
+      s"$shortYear$aMonth"
     }
   }
 }

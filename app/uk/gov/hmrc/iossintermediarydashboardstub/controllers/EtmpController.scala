@@ -23,7 +23,7 @@ import play.api.mvc.{Action, AnyContent, ControllerComponents}
 import uk.gov.hmrc.iossintermediarydashboardstub.models.etmp.{EtmpObligations, ObligationsDateRange}
 import uk.gov.hmrc.iossintermediarydashboardstub.utils.FutureSyntax.FutureOps
 import uk.gov.hmrc.iossintermediarydashboardstub.utils.JsonSchemaHelper
-import uk.gov.hmrc.iossintermediarydashboardstub.utils.ObligationsData.defaultSuccessfulResponse
+import uk.gov.hmrc.iossintermediarydashboardstub.utils.ObligationsData.{defaultSuccessfulResponse, generateObligationsResponse}
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import javax.inject.Inject
@@ -49,13 +49,16 @@ class EtmpController @Inject()(
       logger.info(s"getObligations with request: $request, headers: ${request.headers} and body: ${request.body}.")
       jsonSchemaHelper.applySchemaHeaderValidation(request.headers) {
 
-        def generateObligations(idNumber: String): EtmpObligations = {
+        def generateObligations(idNumber: String, dateRange: ObligationsDateRange): EtmpObligations = {
           idNumber match {
+            case "IN9001234567" =>
+              generateObligationsResponse(Seq("IM9001144771", "IM9001144772", "IM9001144773"), dateRange)
+
             case _ => defaultSuccessfulResponse
           }
         }
 
-        Ok(Json.toJson(generateObligations(idNumber))).toFuture
+        Ok(Json.toJson(generateObligations(idNumber, dateRange))).toFuture
       }
   }
 }
