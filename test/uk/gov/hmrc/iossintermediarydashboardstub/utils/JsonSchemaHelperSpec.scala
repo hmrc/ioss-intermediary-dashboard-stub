@@ -1,0 +1,54 @@
+/*
+ * Copyright 2025 HM Revenue & Customs
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package uk.gov.hmrc.iossintermediarydashboardstub.utils
+
+import play.api.libs.json.Json
+import uk.gov.hmrc.iossintermediarydashboardstub.base.SpecBase
+
+class JsonSchemaHelperSpec extends SpecBase {
+
+  private val helper: JsonSchemaHelper = new JsonSchemaHelper()
+
+  "EtmpGetObligation JsonSchemaHelper.applySchemaValidation" - {
+
+    val etmpGetObligationsSchemaPath: String = EtmpGetObligationsData().schemaPath
+    val etmpGetObligationsGivenExample: String = EtmpGetObligationsData().givenExample
+    val etmpGetObligationsInvalidExample: String = EtmpGetObligationsData().invalidExample
+
+    "must return NoJsBodyProvided if no jsBody parameter specified" in {
+      helper.applySchemaValidation(etmpGetObligationsSchemaPath, None) `mustBe` NoJsBodyProvided
+    }
+
+    "must return FailedToFindSchema if there is no schema found in the given path" in {
+      helper.applySchemaValidation("/invalid-schema-path", None) `mustBe` FailedToFindSchema
+    }
+
+    "must return FailedSchema for given invalid example" in {
+      helper.applySchemaValidation(
+        etmpGetObligationsSchemaPath,
+        Some(Json.parse(etmpGetObligationsInvalidExample))
+      ) `mustBe` FailedSchema
+    }
+
+    "must return SuccessSchema for given example" in {
+      helper.applySchemaValidation(
+        etmpGetObligationsSchemaPath,
+        Some(Json.parse(etmpGetObligationsGivenExample))
+      ) `mustBe` SuccessSchema
+    }
+  }
+}
