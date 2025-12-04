@@ -56,9 +56,7 @@ class EtmpControllerSpec extends SpecBase {
       val referenceNumber: String = "IN9001234567"
       val clientAIossNumber: String = "IM9001234567"
       val clientBIossNumber: String = "IM9001234568"
-      val clientCIossNumber: String = "IM9001144771"
-      val clientDIossNumber: String = "IM9001144772"
-      val clientEIossNumber: String = "IM9001144777"
+
       val firstDateOfYear: LocalDate = LocalDate.of(2025, 1, 1)
       val lastDateOfYear: LocalDate = LocalDate.of(2025, 12, 31)
       val dateRange: ObligationsDateRange = ObligationsDateRange(firstDateOfYear, lastDateOfYear)
@@ -126,53 +124,308 @@ class EtmpControllerSpec extends SpecBase {
               )
             ),
             EtmpObligation(
-              identification = EtmpObligationIdentification(clientCIossNumber),
+              identification = EtmpObligationIdentification("IM9001144771"),
               obligationDetails = Seq(
                 EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = "25AA"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = "25AB"
+                ),
+                EtmpObligationDetails(
                   status = EtmpObligationsFulfilmentStatus.Open,
-                  periodKey = "25AL"
-                ),
-                EtmpObligationDetails(
-                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
-                  periodKey = "25AK"
-                ),
-                EtmpObligationDetails(
-                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
-                  periodKey = "25AJ"
+                  periodKey = "25AC"
                 )
               )
             ),
             EtmpObligation(
-              identification = EtmpObligationIdentification(clientDIossNumber),
+              identification = EtmpObligationIdentification("IM9001144772"),
               obligationDetails = Seq(
                 EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = "25AA"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = "25AB"
+                ),
+                EtmpObligationDetails(
                   status = EtmpObligationsFulfilmentStatus.Open,
-                  periodKey = "25AL"
-                ),
-                EtmpObligationDetails(
-                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
-                  periodKey = "25AK"
-                ),
-                EtmpObligationDetails(
-                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
-                  periodKey = "25AJ"
+                  periodKey = "25AC"
                 )
               )
             ),
             EtmpObligation(
-              identification = EtmpObligationIdentification(clientEIossNumber),
+              identification = EtmpObligationIdentification("IM9001144773"),
               obligationDetails = Seq(
                 EtmpObligationDetails(
                   status = EtmpObligationsFulfilmentStatus.Open,
-                  periodKey = "25AL"
+                  periodKey = "25AA"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AB"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AC"
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification("IM9001144774"),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AA"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AB"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AC"
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification("IM9001144775"),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AA"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AB"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AC"
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification("IM9001144776"),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AA"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AB"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AC"
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification("IM9001144777"),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = "25AA"
                 ),
                 EtmpObligationDetails(
                   status = EtmpObligationsFulfilmentStatus.Fulfilled,
-                  periodKey = "25AK"
+                  periodKey = "25AB"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AC"
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification("IM9001144778"),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AA"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AB"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AC"
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification("IM9001144881"),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AA"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AB"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AC"
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification("IM9001144882"),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = "25AA"
                 ),
                 EtmpObligationDetails(
                   status = EtmpObligationsFulfilmentStatus.Fulfilled,
-                  periodKey = "25AJ"
+                  periodKey = "25AB"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = "25AC"
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification("IM9001144883"),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AA"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AB"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AC"
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification("IM9001144884"),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = "25AA"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = "25AB"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = "25AC"
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification("IM9001144885"),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = "25AA"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = "25AB"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = "25AC"
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification("IM9001144886"),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = "25AA"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = "25AB"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = "25AC"
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification("IM9001144661"),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AA"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AB"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AC"
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification("IM9001144662"),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AA"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AB"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AC"
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification("IM9001144663"),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AA"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AB"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AC"
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification("IM9001144664"),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AA"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AB"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AC"
                 )
               )
             )
