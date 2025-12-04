@@ -56,6 +56,9 @@ class EtmpControllerSpec extends SpecBase {
       val referenceNumber: String = "IN9001234567"
       val clientAIossNumber: String = "IM9001234567"
       val clientBIossNumber: String = "IM9001234568"
+      val clientCIossNumber: String = "IM9001144771"
+      val clientDIossNumber: String = "IM9001144772"
+      val clientEIossNumber: String = "IM9001144777"
       val firstDateOfYear: LocalDate = LocalDate.of(2025, 1, 1)
       val lastDateOfYear: LocalDate = LocalDate.of(2025, 12, 31)
       val dateRange: ObligationsDateRange = ObligationsDateRange(firstDateOfYear, lastDateOfYear)
@@ -107,6 +110,57 @@ class EtmpControllerSpec extends SpecBase {
             ),
             EtmpObligation(
               identification = EtmpObligationIdentification(clientBIossNumber),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AL"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = "25AK"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = "25AJ"
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification(clientCIossNumber),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AL"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = "25AK"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = "25AJ"
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification(clientDIossNumber),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = "25AL"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = "25AK"
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = "25AJ"
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification(clientEIossNumber),
               obligationDetails = Seq(
                 EtmpObligationDetails(
                   status = EtmpObligationsFulfilmentStatus.Open,
