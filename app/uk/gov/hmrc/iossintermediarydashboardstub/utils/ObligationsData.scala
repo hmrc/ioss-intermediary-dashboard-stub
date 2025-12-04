@@ -55,6 +55,57 @@ object ObligationsData {
             periodKey = "25AJ"
           )
         )
+      ),
+      EtmpObligation(
+        identification = EtmpObligationIdentification("IM9001144771"),
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Open,
+            periodKey = "25AL"
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = "25AK"
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = "25AJ"
+          )
+        )
+      ),
+      EtmpObligation(
+        identification = EtmpObligationIdentification("IM9001144772"),
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Open,
+            periodKey = "25AL"
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = "25AK"
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = "25AJ"
+          )
+        )
+      ),
+      EtmpObligation(
+        identification = EtmpObligationIdentification("IM9001144777"),
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Open,
+            periodKey = "25AL"
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = "25AK"
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = "25AJ"
+          )
+        )
       )
     )
   )
