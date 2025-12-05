@@ -27,6 +27,7 @@ import uk.gov.hmrc.iossintermediarydashboardstub.base.SpecBase
 import uk.gov.hmrc.iossintermediarydashboardstub.models.etmp.{EtmpObligation, EtmpObligationDetails, EtmpObligationIdentification, EtmpObligations, EtmpObligationsFulfilmentStatus, ObligationsDateRange}
 import uk.gov.hmrc.iossintermediarydashboardstub.utils.Formatters.dateTimeFormatter
 import uk.gov.hmrc.iossintermediarydashboardstub.utils.JsonSchemaHelper
+import uk.gov.hmrc.iossintermediarydashboardstub.utils.ObligationsData.{oneMonthAgoPeriod, twoMonthAgosPeriod}
 
 import java.time.{LocalDate, LocalDateTime}
 import java.util.UUID
@@ -426,6 +427,94 @@ class EtmpControllerSpec extends SpecBase {
                 EtmpObligationDetails(
                   status = EtmpObligationsFulfilmentStatus.Open,
                   periodKey = "25AC"
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification("IM9001144833"),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = oneMonthAgoPeriod
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification("IM9001144844"),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = oneMonthAgoPeriod
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification("IM9001144855"),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = oneMonthAgoPeriod
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification("IM9001144866"),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = oneMonthAgoPeriod
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification("IM9001144877"),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = twoMonthAgosPeriod
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = oneMonthAgoPeriod
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification("IM9001144888"),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Fulfilled,
+                  periodKey = twoMonthAgosPeriod
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = oneMonthAgoPeriod
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification("IM9001144899"),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = twoMonthAgosPeriod
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = oneMonthAgoPeriod
+                )
+              )
+            ),
+            EtmpObligation(
+              identification = EtmpObligationIdentification("IM9001144800"),
+              obligationDetails = Seq(
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = twoMonthAgosPeriod
+                ),
+                EtmpObligationDetails(
+                  status = EtmpObligationsFulfilmentStatus.Open,
+                  periodKey = oneMonthAgoPeriod
                 )
               )
             )
