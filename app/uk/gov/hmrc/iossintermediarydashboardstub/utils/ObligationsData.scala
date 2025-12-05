@@ -529,12 +529,10 @@ object ObligationsData {
           EtmpObligation(
             identification = EtmpObligationIdentification(clientIossNumber),
             obligationDetails =
-              for {
-                eachPeriod <- getAllPeriodsWithinDateRange(dateRange)
-              } yield {
+              getAllPeriodsWithinDateRange(dateRange).zipWithIndex.map { (period, _) =>
                 EtmpObligationDetails(
                   status = EtmpObligationsFulfilmentStatus.Open,
-                  periodKey = eachPeriod
+                  periodKey = period
                 )
               }
           )
@@ -544,16 +542,16 @@ object ObligationsData {
 
   private def getAllPeriodsWithinDateRange(dateRange: ObligationsDateRange): Seq[String] = {
 
-    val dateRangeYears: Seq[Int] = dateRange.from.getYear.to(dateRange.to.getYear).toList
-    val dateRangeMonths: Seq[Int] = dateRange.from.getMonthValue.to(dateRange.to.getMonthValue).toList
+    val myDateRange = Iterator.iterate(dateRange.from) { iteratedMonth =>
+      iteratedMonth.plusMonths(1)
+    }.takeWhile(_.isBefore(dateRange.to))
 
     for {
-      year <- dateRangeYears
-      month <- dateRangeMonths
+      date <- myDateRange.toList
     } yield {
-      val shortYear: String = year.toString.substring(2, 4)
+      val shortYear: String = date.getYear.toString.substring(2, 4)
 
-      val aMonth = month match {
+      val aMonth = date.getMonthValue match {
         case 1 => "AA"
         case 2 => "AB"
         case 3 => "AC"

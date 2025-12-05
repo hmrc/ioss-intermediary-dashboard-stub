@@ -52,7 +52,10 @@ class EtmpController @Inject()(
         def generateObligations(idNumber: String, dateRange: ObligationsDateRange): EtmpObligations = {
           idNumber match {
             case "IN9001234567" =>
-              generateObligationsResponse(Seq("IM9001144771", "IM9001144772", "IM9001144773"), dateRange)
+              generateObligationsResponse(
+                clientsIossNumbers = Seq("IM9001144771", "IM9001144772", "IM9001144773"),
+                dateRange = dateRange
+              )
 
             case _ => defaultSuccessfulResponse
           }
