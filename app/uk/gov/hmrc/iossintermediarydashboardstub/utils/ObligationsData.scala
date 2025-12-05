@@ -18,7 +18,13 @@ package uk.gov.hmrc.iossintermediarydashboardstub.utils
 
 import uk.gov.hmrc.iossintermediarydashboardstub.models.etmp.{EtmpObligation, EtmpObligationDetails, EtmpObligationIdentification, EtmpObligations, EtmpObligationsFulfilmentStatus}
 
+import java.time.{LocalDate, Month}
+import java.time.Month._
+
 object ObligationsData {
+
+  val oneMonthAgoPeriod = getEtmpStringFromDate(LocalDate.now().minusMonths(1))
+  val twoMonthAgosPeriod = getEtmpStringFromDate(LocalDate.now().minusMonths(2))
 
   val defaultSuccessfulResponse: EtmpObligations = EtmpObligations(
     obligations = Seq(
@@ -361,7 +367,119 @@ object ObligationsData {
             periodKey = "25AC"
           )
         )
+      ),
+      EtmpObligation(
+        identification = EtmpObligationIdentification("IM9001144833"),
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = oneMonthAgoPeriod
+          )
+        )
+      ),
+      EtmpObligation(
+        identification = EtmpObligationIdentification("IM9001144844"),
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Open,
+            periodKey = oneMonthAgoPeriod
+          )
+        )
+      ),
+      EtmpObligation(
+        identification = EtmpObligationIdentification("IM9001144855"),
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = oneMonthAgoPeriod
+          )
+        )
+      ),
+      EtmpObligation(
+        identification = EtmpObligationIdentification("IM9001144866"),
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Open,
+            periodKey = oneMonthAgoPeriod
+          )
+        )
+      ),
+      EtmpObligation(
+        identification = EtmpObligationIdentification("IM9001144877"),
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = twoMonthAgosPeriod
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Open,
+            periodKey = oneMonthAgoPeriod
+          )
+        )
+      ),
+      EtmpObligation(
+        identification = EtmpObligationIdentification("IM9001144888"),
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Fulfilled,
+            periodKey = twoMonthAgosPeriod
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Open,
+            periodKey = oneMonthAgoPeriod
+          )
+        )
+      ),
+      EtmpObligation(
+        identification = EtmpObligationIdentification("IM9001144899"),
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Open,
+            periodKey = twoMonthAgosPeriod
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Open,
+            periodKey = oneMonthAgoPeriod
+          )
+        )
+      ),
+      EtmpObligation(
+        identification = EtmpObligationIdentification("IM9001144800"),
+        obligationDetails = Seq(
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Open,
+            periodKey = twoMonthAgosPeriod
+          ),
+          EtmpObligationDetails(
+            status = EtmpObligationsFulfilmentStatus.Open,
+            periodKey = oneMonthAgoPeriod
+          )
+        )
       )
     )
   )
+
+  private def getEtmpStringFromDate(date: LocalDate): String = {
+    s"${toEtmpYearString(date.getYear)}${toEtmpMonthString(date.getMonth)}"
+  }
+
+  private def toEtmpYearString(year: Int): String =
+    year.toString.substring(2)
+
+  private def toEtmpMonthString(month: Month): String = {
+    month match {
+      case JANUARY => "AA"
+      case FEBRUARY => "AB"
+      case MARCH => "AC"
+      case APRIL => "AD"
+      case MAY => "AE"
+      case JUNE => "AF"
+      case JULY => "AG"
+      case AUGUST => "AH"
+      case SEPTEMBER => "AI"
+      case OCTOBER => "AJ"
+      case NOVEMBER => "AK"
+      case DECEMBER => "AL"
+    }
+  }
 }
