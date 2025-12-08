@@ -24,11 +24,10 @@ import play.api.mvc.Headers
 import play.api.test.Helpers.{ACCEPT, AUTHORIZATION, CONTENT_TYPE, DATE, GET, contentAsJson, defaultAwaitTimeout, status}
 import play.api.test.{FakeRequest, Helpers}
 import uk.gov.hmrc.iossintermediarydashboardstub.base.SpecBase
-import uk.gov.hmrc.iossintermediarydashboardstub.models.etmp.EtmpObligationsFulfilmentStatus.{Fulfilled, Open}
-import uk.gov.hmrc.iossintermediarydashboardstub.models.etmp.{EtmpObligation, EtmpObligationDetails, EtmpObligationIdentification, EtmpObligations, EtmpObligationsFulfilmentStatus, ObligationsDateRange}
+import uk.gov.hmrc.iossintermediarydashboardstub.models.etmp.{EtmpObligations, ObligationsDateRange}
 import uk.gov.hmrc.iossintermediarydashboardstub.utils.Formatters.dateTimeFormatter
 import uk.gov.hmrc.iossintermediarydashboardstub.utils.JsonSchemaHelper
-import uk.gov.hmrc.iossintermediarydashboardstub.utils.ObligationsData.{generateObligationsResponse, oneMonthAgoPeriod, twoMonthAgosPeriod}
+import uk.gov.hmrc.iossintermediarydashboardstub.utils.ObligationsData.{defaultData, generateObligationsResponse}
 
 import java.time.{LocalDate, LocalDateTime}
 import java.util.UUID
@@ -36,7 +35,7 @@ import java.util.UUID
 class EtmpControllerSpec extends SpecBase {
 
   private val jsonSchemaHelper: JsonSchemaHelper = new JsonSchemaHelper()
-  private val controller: EtmpController = new EtmpController(Helpers.stubControllerComponents(), jsonSchemaHelper, stubClock)
+  private val controller: EtmpController = new EtmpController(Helpers.stubControllerComponents(), jsonSchemaHelper)
 
   private val validHeaders: Seq[(String, String)] = Seq(
     (AUTHORIZATION, ""),
@@ -55,9 +54,7 @@ class EtmpControllerSpec extends SpecBase {
       val idType: String = "IOSS"
       val regimeType: String = "IOSS"
       val obligationFulfilmentStatus: String = "O"
-      val referenceNumber: String = "IN9001234568"
-      val clientAIossNumber: String = "IM9001234567"
-      val clientBIossNumber: String = "IM9001234568"
+      val referenceNumber: String = "IN9001234567"
       val firstDateOfYear: LocalDate = LocalDate.of(2025, 1, 1)
       val lastDateOfYear: LocalDate = LocalDate.of(2025, 12, 31)
       val dateRange: ObligationsDateRange = ObligationsDateRange(firstDateOfYear, lastDateOfYear)
@@ -89,18 +86,7 @@ class EtmpControllerSpec extends SpecBase {
       "must return a successful response" in {
 
         val successfulObligationsResponse = generateObligationsResponse(
-          data = Map(
-            clientAIossNumber -> Map(
-              LocalDate.of(2025, 12, 1) -> Open,
-              LocalDate.of(2025, 11, 1) -> Fulfilled,
-              LocalDate.of(2025, 10, 1) -> Fulfilled
-            ),
-            clientBIossNumber -> Map(
-              LocalDate.of(2025, 12, 1) -> Open,
-              LocalDate.of(2025, 11, 1) -> Fulfilled,
-              LocalDate.of(2025, 10, 1) -> Fulfilled
-            )
-          ),
+          data = defaultData,
           dateRange = dateRange
         )
 

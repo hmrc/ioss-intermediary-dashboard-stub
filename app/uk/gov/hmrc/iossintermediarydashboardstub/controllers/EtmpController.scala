@@ -20,22 +20,19 @@ import com.google.inject.Singleton
 import play.api.Logging
 import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent, ControllerComponents}
-import uk.gov.hmrc.iossintermediarydashboardstub.models.etmp.EtmpObligationsFulfilmentStatus.{Fulfilled, Open}
 import uk.gov.hmrc.iossintermediarydashboardstub.models.etmp.{EtmpObligations, ObligationsDateRange}
 import uk.gov.hmrc.iossintermediarydashboardstub.utils.FutureSyntax.FutureOps
 import uk.gov.hmrc.iossintermediarydashboardstub.utils.JsonSchemaHelper
-import uk.gov.hmrc.iossintermediarydashboardstub.utils.ObligationsData.generateObligationsResponse
+import uk.gov.hmrc.iossintermediarydashboardstub.utils.ObligationsData.{createReturnObligationData, defaultData, generateObligationsResponse}
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
-import java.time.{Clock, LocalDate}
 import javax.inject.Inject
 import scala.concurrent.ExecutionContext
 
 @Singleton
 class EtmpController @Inject()(
                                 cc: ControllerComponents,
-                                jsonSchemaHelper: JsonSchemaHelper,
-                                clock: Clock
+                                jsonSchemaHelper: JsonSchemaHelper
                               ) extends BackendController(cc) with Logging {
 
   implicit val ec: ExecutionContext = cc.executionContext
@@ -54,41 +51,15 @@ class EtmpController @Inject()(
 
         def generateObligations(idNumber: String, dateRange: ObligationsDateRange): EtmpObligations = {
           idNumber match {
-            case "IN9001234567" =>
+            case "IN9008888887" =>
               generateObligationsResponse(
-                data = Map(
-                  "IM9001144771" -> Map(
-                    LocalDate.now(clock).minusMonths(3) -> Fulfilled,
-                    LocalDate.now(clock).minusMonths(2) -> Open,
-                    LocalDate.now(clock).minusMonths(1) -> Open,
-                    LocalDate.now(clock) -> Open
-                  ),
-                  "IM9001144772" -> Map(
-                    LocalDate.now(clock).minusMonths(3) -> Fulfilled,
-                    LocalDate.now(clock).minusMonths(2) -> Open
-                  ),
-                  "IM9001144773" -> Map(
-                    LocalDate.now(clock).minusMonths(3) -> Fulfilled,
-                    LocalDate.now(clock).minusMonths(2) -> Open
-                  )
-                ),
+                data = createReturnObligationData,
                 dateRange = dateRange
               )
 
             case _ => generateObligationsResponse(
-              data = Map(
-                "IM9001234567" -> Map(
-                  LocalDate.of(2025, 12, 1) -> Open,
-                  LocalDate.of(2025, 11, 1) -> Fulfilled,
-                  LocalDate.of(2025, 10, 1) -> Fulfilled
-                ),
-                "IM9001234568" -> Map(
-                  LocalDate.of(2025, 12, 1) -> Open,
-                  LocalDate.of(2025, 11, 1) -> Fulfilled,
-                  LocalDate.of(2025, 10, 1) -> Fulfilled
-                )
-              ),
-              dateRange
+              data = defaultData,
+              dateRange = dateRange
             )
           }
         }
