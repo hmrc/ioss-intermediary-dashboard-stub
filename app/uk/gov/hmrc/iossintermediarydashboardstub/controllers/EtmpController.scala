@@ -20,19 +20,22 @@ import com.google.inject.Singleton
 import play.api.Logging
 import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent, ControllerComponents}
+import uk.gov.hmrc.iossintermediarydashboardstub.models.etmp.EtmpObligationsFulfilmentStatus.{Fulfilled, Open}
 import uk.gov.hmrc.iossintermediarydashboardstub.models.etmp.{EtmpObligations, ObligationsDateRange}
 import uk.gov.hmrc.iossintermediarydashboardstub.utils.FutureSyntax.FutureOps
 import uk.gov.hmrc.iossintermediarydashboardstub.utils.JsonSchemaHelper
-import uk.gov.hmrc.iossintermediarydashboardstub.utils.ObligationsData.{defaultSuccessfulResponse, generateObligationsResponse}
+import uk.gov.hmrc.iossintermediarydashboardstub.utils.ObligationsData.generateObligationsResponse
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
+import java.time.{Clock, LocalDate}
 import javax.inject.Inject
 import scala.concurrent.ExecutionContext
 
 @Singleton
 class EtmpController @Inject()(
                                 cc: ControllerComponents,
-                                jsonSchemaHelper: JsonSchemaHelper
+                                jsonSchemaHelper: JsonSchemaHelper,
+                                clock: Clock
                               ) extends BackendController(cc) with Logging {
 
   implicit val ec: ExecutionContext = cc.executionContext
@@ -53,11 +56,40 @@ class EtmpController @Inject()(
           idNumber match {
             case "IN9001234567" =>
               generateObligationsResponse(
-                clientsIossNumbers = Seq("IM9001144771", "IM9001144772", "IM9001144773"),
+                data = Map(
+                  "IM9001144771" -> Map(
+                    LocalDate.now(clock).minusMonths(3) -> Fulfilled,
+                    LocalDate.now(clock).minusMonths(2) -> Open,
+                    LocalDate.now(clock).minusMonths(1) -> Open,
+                    LocalDate.now(clock) -> Open
+                  ),
+                  "IM9001144772" -> Map(
+                    LocalDate.now(clock).minusMonths(3) -> Fulfilled,
+                    LocalDate.now(clock).minusMonths(2) -> Open
+                  ),
+                  "IM9001144773" -> Map(
+                    LocalDate.now(clock).minusMonths(3) -> Fulfilled,
+                    LocalDate.now(clock).minusMonths(2) -> Open
+                  )
+                ),
                 dateRange = dateRange
               )
 
-            case _ => defaultSuccessfulResponse
+            case _ => generateObligationsResponse(
+              data = Map(
+                "IM9001234567" -> Map(
+                  LocalDate.of(2025, 12, 1) -> Open,
+                  LocalDate.of(2025, 11, 1) -> Fulfilled,
+                  LocalDate.of(2025, 10, 1) -> Fulfilled
+                ),
+                "IM9001234568" -> Map(
+                  LocalDate.of(2025, 12, 1) -> Open,
+                  LocalDate.of(2025, 11, 1) -> Fulfilled,
+                  LocalDate.of(2025, 10, 1) -> Fulfilled
+                )
+              ),
+              dateRange
+            )
           }
         }
 

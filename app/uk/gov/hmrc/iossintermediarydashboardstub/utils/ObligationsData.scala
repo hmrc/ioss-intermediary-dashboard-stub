@@ -16,12 +16,16 @@
 
 package uk.gov.hmrc.iossintermediarydashboardstub.utils
 
+import uk.gov.hmrc.iossintermediarydashboardstub.models.etmp.EtmpObligationsFulfilmentStatus.{Fulfilled, Open}
 import uk.gov.hmrc.iossintermediarydashboardstub.models.etmp.{EtmpObligation, EtmpObligationDetails, EtmpObligationIdentification, EtmpObligations, EtmpObligationsFulfilmentStatus, ObligationsDateRange}
+
+import java.time.LocalDate
 
 import java.time.{LocalDate, Month}
 import java.time.Month._
 
 object ObligationsData {
+
 
   val oneMonthAgoPeriod = getEtmpStringFromDate(LocalDate.now().minusMonths(1))
   val twoMonthAgosPeriod = getEtmpStringFromDate(LocalDate.now().minusMonths(2))
@@ -518,26 +522,41 @@ object ObligationsData {
   }
 
   def generateObligationsResponse(
-                                   clientsIossNumbers: Seq[String],
-                                   dateRange: ObligationsDateRange
-                                 ): EtmpObligations = {
+                                      data: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]],
+                                      dateRange: ObligationsDateRange
+                                    ): EtmpObligations = {
     EtmpObligations(
       obligations =
-        for {
-          clientIossNumber <- clientsIossNumbers
+        (for {
+          (iossNumber, periodsWithStatus) <- data
         } yield {
           EtmpObligation(
-            identification = EtmpObligationIdentification(clientIossNumber),
-            obligationDetails =
-              getAllPeriodsWithinDateRange(dateRange).zipWithIndex.map { (period, _) =>
-                EtmpObligationDetails(
-                  status = EtmpObligationsFulfilmentStatus.Open,
-                  periodKey = period
-                )
-              }
+            identification = EtmpObligationIdentification(iossNumber),
+            obligationDetails = buildObligationDetails(periodsWithStatus, dateRange)
           )
-        }
+        }).toSeq
     )
+  }
+
+  private def buildObligationDetails(
+                                      periodsWithStatus: Map[LocalDate, EtmpObligationsFulfilmentStatus],
+                                      dateRange: ObligationsDateRange
+                                    ): Seq[EtmpObligationDetails] = {
+
+    val convertedPeriodsWithStatus: Map[String, EtmpObligationsFulfilmentStatus] = periodsWithStatus.map { (date, status) =>
+      val periodKey: String = convertToPeriodKey(date.getYear, date.getMonthValue)
+      (periodKey, status)
+    }
+
+    for {
+      period <- getAllPeriodsWithinDateRange(dateRange)
+    } yield {
+      val status = convertedPeriodsWithStatus.getOrElse(period, Fulfilled)
+      EtmpObligationDetails(
+        status = status,
+        periodKey = period
+      )
+    }
   }
 
   private def getAllPeriodsWithinDateRange(dateRange: ObligationsDateRange): Seq[String] = {
@@ -549,24 +568,27 @@ object ObligationsData {
     for {
       date <- myDateRange.toList
     } yield {
-      val shortYear: String = date.getYear.toString.substring(2, 4)
-
-      val aMonth = date.getMonthValue match {
-        case 1 => "AA"
-        case 2 => "AB"
-        case 3 => "AC"
-        case 4 => "AD"
-        case 5 => "AE"
-        case 6 => "AF"
-        case 7 => "AG"
-        case 8 => "AH"
-        case 9 => "AI"
-        case 10 => "AJ"
-        case 11 => "AK"
-        case 12 => "AL"
-      }
-
-      s"$shortYear$aMonth"
+      convertToPeriodKey(date.getYear, date.getMonthValue)
     }
+  }
+
+  private def convertToPeriodKey(year: Int, monthValue: Int): String = {
+    val shortYear: String = year.toString.substring(2, 4)
+    val month = monthValue match {
+      case 1 => "AA"
+      case 2 => "AB"
+      case 3 => "AC"
+      case 4 => "AD"
+      case 5 => "AE"
+      case 6 => "AF"
+      case 7 => "AG"
+      case 8 => "AH"
+      case 9 => "AI"
+      case 10 => "AJ"
+      case 11 => "AK"
+      case 12 => "AL"
+    }
+
+    s"$shortYear$month"
   }
 }
