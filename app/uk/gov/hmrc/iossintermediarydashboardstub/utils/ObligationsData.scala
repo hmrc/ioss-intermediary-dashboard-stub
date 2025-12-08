@@ -23,7 +23,7 @@ import java.time.LocalDate
 
 object ObligationsData {
 
-  val defaultData: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
+  val multipleData: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
     "IM9001144771" -> Map(
       LocalDate.of(2025, 12, 1) -> Open,
       LocalDate.of(2025, 11, 1) -> Open,
@@ -163,19 +163,32 @@ object ObligationsData {
       LocalDate.now().minusMonths(1) -> Open
     )
   )
-  
-  val createReturnObligationData: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
-    "IM9001144771" -> Map(
+
+  val multipleActiveClientsNoPreviousClients: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
+    "IM9001144881" -> Map(
       LocalDate.now().minusMonths(3) -> Fulfilled,
       LocalDate.now().minusMonths(2) -> Open,
       LocalDate.now().minusMonths(1) -> Open,
       LocalDate.now() -> Open
     ),
-    "IM9001144772" -> Map(
+    "IM9001144882" -> Map(
       LocalDate.now().minusMonths(3) -> Fulfilled,
       LocalDate.now().minusMonths(2) -> Open
     ),
-    "IM9001144773" -> Map(
+    "IM9001144883" -> Map(
+      LocalDate.now().minusMonths(3) -> Fulfilled,
+      LocalDate.now().minusMonths(2) -> Open
+    )
+  )
+
+  val defaultData: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
+    "100000001" -> Map(
+      LocalDate.now().minusMonths(3) -> Fulfilled,
+      LocalDate.now().minusMonths(2) -> Open,
+      LocalDate.now().minusMonths(1) -> Open,
+      LocalDate.now() -> Open
+    ),
+    "100000003" -> Map(
       LocalDate.now().minusMonths(3) -> Fulfilled,
       LocalDate.now().minusMonths(2) -> Open
     )

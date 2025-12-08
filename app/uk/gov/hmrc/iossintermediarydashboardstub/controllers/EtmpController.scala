@@ -23,7 +23,7 @@ import play.api.mvc.{Action, AnyContent, ControllerComponents}
 import uk.gov.hmrc.iossintermediarydashboardstub.models.etmp.{EtmpObligations, ObligationsDateRange}
 import uk.gov.hmrc.iossintermediarydashboardstub.utils.FutureSyntax.FutureOps
 import uk.gov.hmrc.iossintermediarydashboardstub.utils.JsonSchemaHelper
-import uk.gov.hmrc.iossintermediarydashboardstub.utils.ObligationsData.{createReturnObligationData, defaultData, generateObligationsResponse}
+import uk.gov.hmrc.iossintermediarydashboardstub.utils.ObligationsData.{defaultData, generateObligationsResponse, multipleActiveClientsNoPreviousClients, multipleData}
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import javax.inject.Inject
@@ -53,14 +53,21 @@ class EtmpController @Inject()(
           idNumber match {
             case "IN9008888887" =>
               generateObligationsResponse(
-                data = createReturnObligationData,
+                data = multipleActiveClientsNoPreviousClients,
                 dateRange = dateRange
               )
 
-            case _ => generateObligationsResponse(
-              data = defaultData,
-              dateRange = dateRange
-            )
+            case "IN9001234567" =>
+              generateObligationsResponse(
+                data = multipleData,
+                dateRange = dateRange
+              )
+
+            case _ =>
+              generateObligationsResponse(
+                data = defaultData,
+                dateRange = dateRange
+              )
           }
         }
 

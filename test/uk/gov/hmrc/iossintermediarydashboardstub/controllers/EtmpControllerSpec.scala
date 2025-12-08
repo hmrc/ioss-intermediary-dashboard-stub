@@ -27,7 +27,7 @@ import uk.gov.hmrc.iossintermediarydashboardstub.base.SpecBase
 import uk.gov.hmrc.iossintermediarydashboardstub.models.etmp.{EtmpObligations, ObligationsDateRange}
 import uk.gov.hmrc.iossintermediarydashboardstub.utils.Formatters.dateTimeFormatter
 import uk.gov.hmrc.iossintermediarydashboardstub.utils.JsonSchemaHelper
-import uk.gov.hmrc.iossintermediarydashboardstub.utils.ObligationsData.{defaultData, generateObligationsResponse}
+import uk.gov.hmrc.iossintermediarydashboardstub.utils.ObligationsData.{multipleData, generateObligationsResponse}
 
 import java.time.{LocalDate, LocalDateTime}
 import java.util.UUID
@@ -86,7 +86,7 @@ class EtmpControllerSpec extends SpecBase {
       "must return a successful response" in {
 
         val successfulObligationsResponse = generateObligationsResponse(
-          data = defaultData,
+          data = multipleData,
           dateRange = dateRange
         )
 
