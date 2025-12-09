@@ -23,7 +23,7 @@ import play.api.mvc.{Action, AnyContent, ControllerComponents}
 import uk.gov.hmrc.iossintermediarydashboardstub.models.etmp.{EtmpObligations, ObligationsDateRange}
 import uk.gov.hmrc.iossintermediarydashboardstub.utils.FutureSyntax.FutureOps
 import uk.gov.hmrc.iossintermediarydashboardstub.utils.JsonSchemaHelper
-import uk.gov.hmrc.iossintermediarydashboardstub.utils.ObligationsData.defaultSuccessfulResponse
+import uk.gov.hmrc.iossintermediarydashboardstub.utils.ObligationsData.{activeNoReturns, defaultData, dueReturnsSomeOverdue, generateObligationsResponse, multipleActiveClientsNoPreviousClients, multipleData, noOverdueReturns, onlyPreviousRegistrations}
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import javax.inject.Inject
@@ -49,13 +49,53 @@ class EtmpController @Inject()(
       logger.info(s"getObligations with request: $request, headers: ${request.headers} and body: ${request.body}.")
       jsonSchemaHelper.applySchemaHeaderValidation(request.headers) {
 
-        def generateObligations(idNumber: String): EtmpObligations = {
+        def generateObligations(idNumber: String, dateRange: ObligationsDateRange): EtmpObligations = {
           idNumber match {
-            case _ => defaultSuccessfulResponse
+            case "IN9001144663" =>
+              generateObligationsResponse(
+                data = activeNoReturns,
+                dateRange = dateRange
+              )
+
+            case "IN9008888883" =>
+              generateObligationsResponse(
+                data = dueReturnsSomeOverdue,
+                dateRange = dateRange
+              )
+
+            case "IN9008888884" =>
+              generateObligationsResponse(
+                data = noOverdueReturns,
+                dateRange = dateRange
+              )
+
+            case "IN9008888886" =>
+              generateObligationsResponse(
+                data = onlyPreviousRegistrations,
+                dateRange = dateRange
+              )
+
+            case "IN9008888887" =>
+              generateObligationsResponse(
+                data = multipleActiveClientsNoPreviousClients,
+                dateRange = dateRange
+              )
+
+            case "IN9001234567" =>
+              generateObligationsResponse(
+                data = multipleData,
+                dateRange = dateRange
+              )
+
+            case _ =>
+              generateObligationsResponse(
+                data = defaultData,
+                dateRange = dateRange
+              )
           }
         }
 
-        Ok(Json.toJson(generateObligations(idNumber))).toFuture
+        Ok(Json.toJson(generateObligations(idNumber, dateRange))).toFuture
       }
   }
 }
