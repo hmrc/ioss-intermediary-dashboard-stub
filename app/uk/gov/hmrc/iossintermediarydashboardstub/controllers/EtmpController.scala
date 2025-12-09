@@ -23,7 +23,7 @@ import play.api.mvc.{Action, AnyContent, ControllerComponents}
 import uk.gov.hmrc.iossintermediarydashboardstub.models.etmp.{EtmpObligations, ObligationsDateRange}
 import uk.gov.hmrc.iossintermediarydashboardstub.utils.FutureSyntax.FutureOps
 import uk.gov.hmrc.iossintermediarydashboardstub.utils.JsonSchemaHelper
-import uk.gov.hmrc.iossintermediarydashboardstub.utils.ObligationsData.{defaultData, generateObligationsResponse, multipleActiveClientsNoPreviousClients, multipleData}
+import uk.gov.hmrc.iossintermediarydashboardstub.utils.ObligationsData.{activeNoReturns, defaultData, dueReturnsSomeOverdue, generateObligationsResponse, multipleActiveClientsNoPreviousClients, multipleData, noOverdueReturns, onlyPreviousRegistrations}
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import javax.inject.Inject
@@ -51,6 +51,30 @@ class EtmpController @Inject()(
 
         def generateObligations(idNumber: String, dateRange: ObligationsDateRange): EtmpObligations = {
           idNumber match {
+            case "IN9001144663" =>
+              generateObligationsResponse(
+                data = activeNoReturns,
+                dateRange = dateRange
+              )
+
+            case "IN9008888883" =>
+              generateObligationsResponse(
+                data = dueReturnsSomeOverdue,
+                dateRange = dateRange
+              )
+
+            case "IN9008888884" =>
+              generateObligationsResponse(
+                data = noOverdueReturns,
+                dateRange = dateRange
+              )
+
+            case "IN9008888886" =>
+              generateObligationsResponse(
+                data = onlyPreviousRegistrations,
+                dateRange = dateRange
+              )
+
             case "IN9008888887" =>
               generateObligationsResponse(
                 data = multipleActiveClientsNoPreviousClients,

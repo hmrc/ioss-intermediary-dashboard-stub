@@ -25,26 +25,6 @@ object ObligationsData {
 
   val multipleData: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
     "IM9001144771" -> Map(
-      LocalDate.of(2025, 12, 1) -> Open,
-      LocalDate.of(2025, 11, 1) -> Open,
-      LocalDate.of(2025, 10, 1) -> Fulfilled
-    ),
-    "IM9001144772" -> Map(
-      LocalDate.of(2025, 12, 1) -> Open,
-      LocalDate.of(2025, 11, 1) -> Open,
-      LocalDate.of(2025, 10, 1) -> Fulfilled
-    ),
-    "IM9001144773" -> Map(
-      LocalDate.of(2025, 12, 1) -> Open,
-      LocalDate.of(2025, 11, 1) -> Open,
-      LocalDate.of(2025, 10, 1) -> Fulfilled
-    ),
-    "IM9001144774" -> Map(
-      LocalDate.of(2025, 12, 1) -> Open,
-      LocalDate.of(2025, 11, 1) -> Fulfilled,
-      LocalDate.of(2025, 10, 1) -> Fulfilled
-    ),
-    "IM9001144771" -> Map(
       LocalDate.of(2025, 3, 1) -> Open,
       LocalDate.of(2025, 2, 1) -> Fulfilled,
       LocalDate.of(2025, 1, 1) -> Fulfilled
@@ -56,8 +36,8 @@ object ObligationsData {
     ),
     "IM9001144773" -> Map(
       LocalDate.of(2025, 3, 1) -> Open,
-      LocalDate.of(2025, 2, 1) -> Fulfilled,
-      LocalDate.of(2025, 1, 1) -> Fulfilled
+      LocalDate.of(2025, 2, 1) -> Open,
+      LocalDate.of(2025, 1, 1) -> Open
     ),
     "IM9001144774" -> Map(
       LocalDate.of(2025, 3, 1) -> Open,
@@ -83,7 +63,10 @@ object ObligationsData {
       LocalDate.of(2025, 3, 1) -> Open,
       LocalDate.of(2025, 2, 1) -> Open,
       LocalDate.of(2025, 1, 1) -> Open
-    ),
+    )
+  )
+
+  val multipleActiveClientsNoPreviousClients: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
     "IM9001144881" -> Map(
       LocalDate.of(2025, 3, 1) -> Open,
       LocalDate.of(2025, 2, 1) -> Open,
@@ -98,7 +81,25 @@ object ObligationsData {
       LocalDate.of(2025, 3, 1) -> Open,
       LocalDate.of(2025, 2, 1) -> Open,
       LocalDate.of(2025, 1, 1) -> Open
+    )
+  )
+
+  val noOverdueReturns: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
+    "IM9001144833" -> Map(
+      LocalDate.now().minusMonths(1) -> Fulfilled
     ),
+    "IM9001144844" -> Map(
+      LocalDate.now().minusMonths(1) -> Open
+    ),
+    "IM9001144855" -> Map(
+      LocalDate.now().minusMonths(1) -> Fulfilled
+    ),
+    "IM9001144866" -> Map(
+      LocalDate.now().minusMonths(1) -> Open
+    )
+  )
+
+  val onlyPreviousRegistrations: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
     "IM9001144884" -> Map(
       LocalDate.of(2025, 3, 1) -> Fulfilled,
       LocalDate.of(2025, 2, 1) -> Fulfilled,
@@ -114,38 +115,9 @@ object ObligationsData {
       LocalDate.of(2025, 2, 1) -> Fulfilled,
       LocalDate.of(2025, 1, 1) -> Fulfilled
     ),
-    "IM9001144661" -> Map(
-      LocalDate.of(2025, 3, 1) -> Open,
-      LocalDate.of(2025, 2, 1) -> Open,
-      LocalDate.of(2025, 1, 1) -> Open
-    ),
-    "IM9001144662" -> Map(
-      LocalDate.of(2025, 3, 1) -> Open,
-      LocalDate.of(2025, 2, 1) -> Open,
-      LocalDate.of(2025, 1, 1) -> Open
-    ),
-    "IM9001144663" -> Map(
-      LocalDate.of(2025, 3, 1) -> Open,
-      LocalDate.of(2025, 2, 1) -> Open,
-      LocalDate.of(2025, 1, 1) -> Open
-    ),
-    "IM9001144664" -> Map(
-      LocalDate.of(2025, 3, 1) -> Open,
-      LocalDate.of(2025, 2, 1) -> Open,
-      LocalDate.of(2025, 1, 1) -> Open
-    ),
-    "IM9001144833" -> Map(
-      LocalDate.now().minusMonths(1) -> Fulfilled
-    ),
-    "IM9001144844" -> Map(
-      LocalDate.now().minusMonths(1) -> Open
-    ),
-    "IM9001144855" -> Map(
-      LocalDate.now().minusMonths(1) -> Fulfilled
-    ),
-    "IM9001144866" -> Map(
-      LocalDate.now().minusMonths(1) -> Open
-    ),
+  )
+
+  val dueReturnsSomeOverdue: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
     "IM9001144877" -> Map(
       LocalDate.now().minusMonths(2) -> Fulfilled,
       LocalDate.now().minusMonths(1) -> Open
@@ -164,33 +136,29 @@ object ObligationsData {
     )
   )
 
-  val multipleActiveClientsNoPreviousClients: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
-    "IM9001144881" -> Map(
-      LocalDate.now().minusMonths(3) -> Fulfilled,
-      LocalDate.now().minusMonths(2) -> Open,
-      LocalDate.now().minusMonths(1) -> Open,
-      LocalDate.now() -> Open
+  val activeNoReturns: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
+    "IM9001144663" -> Map(
+      LocalDate.of(2025, 3, 1) -> Open,
+      LocalDate.of(2025, 2, 1) -> Open,
+      LocalDate.of(2025, 1, 1) -> Open
     ),
-    "IM9001144882" -> Map(
-      LocalDate.now().minusMonths(3) -> Fulfilled,
-      LocalDate.now().minusMonths(2) -> Open
-    ),
-    "IM9001144883" -> Map(
-      LocalDate.now().minusMonths(3) -> Fulfilled,
-      LocalDate.now().minusMonths(2) -> Open
+    "IM9001144664" -> Map(
+      LocalDate.of(2025, 3, 1) -> Open,
+      LocalDate.of(2025, 2, 1) -> Open,
+      LocalDate.of(2025, 1, 1) -> Open
     )
   )
 
   val defaultData: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
-    "100000001" -> Map(
-      LocalDate.now().minusMonths(3) -> Fulfilled,
-      LocalDate.now().minusMonths(2) -> Open,
-      LocalDate.now().minusMonths(1) -> Open,
-      LocalDate.now() -> Open
+    "IM9001144661" -> Map(
+      LocalDate.of(2025, 3, 1) -> Open,
+      LocalDate.of(2025, 2, 1) -> Open,
+      LocalDate.of(2025, 1, 1) -> Open
     ),
-    "100000003" -> Map(
-      LocalDate.now().minusMonths(3) -> Fulfilled,
-      LocalDate.now().minusMonths(2) -> Open
+    "IM9001144662" -> Map(
+      LocalDate.of(2025, 3, 1) -> Open,
+      LocalDate.of(2025, 2, 1) -> Open,
+      LocalDate.of(2025, 1, 1) -> Open
     )
   )
 
@@ -224,7 +192,7 @@ object ObligationsData {
     for {
       period <- getAllPeriodsWithinDateRange(dateRange)
     } yield {
-      val status = convertedPeriodsWithStatus.getOrElse(period, Fulfilled)
+      val status = convertedPeriodsWithStatus.getOrElse(period, Open)
       EtmpObligationDetails(
         status = status,
         periodKey = period
