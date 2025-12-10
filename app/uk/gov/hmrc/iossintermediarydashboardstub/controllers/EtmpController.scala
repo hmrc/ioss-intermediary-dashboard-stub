@@ -23,7 +23,7 @@ import play.api.mvc.{Action, AnyContent, ControllerComponents}
 import uk.gov.hmrc.iossintermediarydashboardstub.models.etmp.{EtmpObligations, ObligationsDateRange}
 import uk.gov.hmrc.iossintermediarydashboardstub.utils.FutureSyntax.FutureOps
 import uk.gov.hmrc.iossintermediarydashboardstub.utils.JsonSchemaHelper
-import uk.gov.hmrc.iossintermediarydashboardstub.utils.ObligationsData.{activeNoReturns, defaultData, dueReturnsSomeOverdue, generateObligationsResponse, multipleActiveClientsNoPreviousClients, multipleData, noOverdueReturns, onlyPreviousRegistrations, returnsOverMultipleYears, returnsOverSixYears}
+import uk.gov.hmrc.iossintermediarydashboardstub.utils.ObligationsData.{activeNoReturns, defaultData, dueReturnsSomeOverdue, excludedIntermediaryFulfilled, excludedIntermediaryOpen, generateObligationsResponse, multipleActiveClientsNoPreviousClients, multipleData, noOverdueReturns, onlyPreviousRegistrations, returnsOverMultipleYears, returnsOverSixYears}
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import javax.inject.Inject
@@ -62,7 +62,7 @@ class EtmpController @Inject()(
                 data = returnsOverSixYears,
                 dateRange = dateRange
               )
-            
+
             case "IN9001144663" =>
               generateObligationsResponse(
                 data = activeNoReturns,
@@ -96,6 +96,18 @@ class EtmpController @Inject()(
             case "IN9001234567" =>
               generateObligationsResponse(
                 data = multipleData,
+                dateRange = dateRange
+              )
+
+            case "IN9000306831" =>
+              generateObligationsResponse(
+                data = excludedIntermediaryFulfilled,
+                dateRange = dateRange
+              )
+
+            case "IN9000306832" =>
+              generateObligationsResponse(
+                data = excludedIntermediaryOpen,
                 dateRange = dateRange
               )
 
