@@ -101,17 +101,14 @@ object ObligationsData {
 
   val onlyPreviousRegistrations: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
     "IM9001144884" -> Map(
-      LocalDate.of(2025, 3, 1) -> Fulfilled,
       LocalDate.of(2025, 2, 1) -> Fulfilled,
       LocalDate.of(2025, 1, 1) -> Fulfilled
     ),
     "IM9001144885" -> Map(
-      LocalDate.of(2025, 3, 1) -> Fulfilled,
       LocalDate.of(2025, 2, 1) -> Fulfilled,
       LocalDate.of(2025, 1, 1) -> Fulfilled
     ),
     "IM9001144886" -> Map(
-      LocalDate.of(2025, 3, 1) -> Fulfilled,
       LocalDate.of(2025, 2, 1) -> Fulfilled,
       LocalDate.of(2025, 1, 1) -> Fulfilled
     ),
