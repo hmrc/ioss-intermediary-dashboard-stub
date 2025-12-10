@@ -101,17 +101,14 @@ object ObligationsData {
 
   val onlyPreviousRegistrations: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
     "IM9001144884" -> Map(
-      LocalDate.of(2025, 3, 1) -> Fulfilled,
       LocalDate.of(2025, 2, 1) -> Fulfilled,
       LocalDate.of(2025, 1, 1) -> Fulfilled
     ),
     "IM9001144885" -> Map(
-      LocalDate.of(2025, 3, 1) -> Fulfilled,
       LocalDate.of(2025, 2, 1) -> Fulfilled,
       LocalDate.of(2025, 1, 1) -> Fulfilled
     ),
     "IM9001144886" -> Map(
-      LocalDate.of(2025, 3, 1) -> Fulfilled,
       LocalDate.of(2025, 2, 1) -> Fulfilled,
       LocalDate.of(2025, 1, 1) -> Fulfilled
     ),
@@ -149,6 +146,13 @@ object ObligationsData {
     )
   )
 
+  val returnsOverMultipleYears: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
+    "IM9001001001" -> Map(
+      LocalDate.of(2025, 1, 1) -> Fulfilled,
+      LocalDate.of(2024, 12, 1) -> Fulfilled
+    )
+  )
+
   val defaultData: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
     "IM9001144661" -> Map(
       LocalDate.of(2025, 3, 1) -> Open,
@@ -159,6 +163,15 @@ object ObligationsData {
       LocalDate.of(2025, 3, 1) -> Open,
       LocalDate.of(2025, 2, 1) -> Open,
       LocalDate.of(2025, 1, 1) -> Open
+    )
+  )
+
+  val returnsOverSixYears: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
+    "IM9002002002" -> Map(
+      LocalDate.now().minusYears(6).minusMonths(2) -> Fulfilled,
+      LocalDate.now().minusYears(6).minusMonths(1) -> Fulfilled,
+      LocalDate.now().minusYears(6) -> Fulfilled,
+      LocalDate.now().minusYears(6).minusMonths(11) -> Fulfilled,
     )
   )
 
