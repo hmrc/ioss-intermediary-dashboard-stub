@@ -179,7 +179,7 @@ object ObligationsData {
       LocalDate.of(2023, 12, 1) -> Fulfilled,
       LocalDate.of(2024, 1, 1) -> Fulfilled,
       LocalDate.of(2024, 2, 1) -> Open
-    ),
+    )
   )
 
   val defaultData: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
