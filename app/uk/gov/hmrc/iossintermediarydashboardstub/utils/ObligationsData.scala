@@ -166,6 +166,15 @@ object ObligationsData {
     )
   )
 
+  val returnsOverSixYears: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
+    "IM9002002002" -> Map(
+      LocalDate.now().minusYears(6).minusMonths(2) -> Fulfilled,
+      LocalDate.now().minusYears(6).minusMonths(1) -> Fulfilled,
+      LocalDate.now().minusYears(6) -> Fulfilled,
+      LocalDate.now().minusYears(6).minusMonths(11) -> Fulfilled,
+    )
+  )
+
   def generateObligationsResponse(
                                    data: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]],
                                    dateRange: ObligationsDateRange
