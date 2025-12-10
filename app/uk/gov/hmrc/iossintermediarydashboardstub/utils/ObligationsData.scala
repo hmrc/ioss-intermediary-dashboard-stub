@@ -153,6 +153,24 @@ object ObligationsData {
     )
   )
 
+  val excludedIntermediaryFulfilled: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
+    "IM9000306831" -> Map(
+      LocalDate.of(2025, 2, 1) -> Fulfilled,
+      LocalDate.of(2025, 1, 1) -> Fulfilled
+    )
+  )
+
+  val excludedIntermediaryOpen: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
+    "IM9000306832" -> Map(
+      LocalDate.of(2025, 2, 1) -> Open,
+      LocalDate.of(2025, 1, 1) -> Open
+    ),
+    "IM9000306833" -> Map(
+      LocalDate.of(2025, 2, 1) -> Fulfilled,
+      LocalDate.of(2025, 1, 1) -> Fulfilled
+    )
+  )
+
   val defaultData: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
     "IM9001144661" -> Map(
       LocalDate.of(2025, 3, 1) -> Open,
