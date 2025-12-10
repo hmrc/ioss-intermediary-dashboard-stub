@@ -23,7 +23,7 @@ import play.api.mvc.{Action, AnyContent, ControllerComponents}
 import uk.gov.hmrc.iossintermediarydashboardstub.models.etmp.{EtmpObligations, ObligationsDateRange}
 import uk.gov.hmrc.iossintermediarydashboardstub.utils.FutureSyntax.FutureOps
 import uk.gov.hmrc.iossintermediarydashboardstub.utils.JsonSchemaHelper
-import uk.gov.hmrc.iossintermediarydashboardstub.utils.ObligationsData.{activeNoReturns, defaultData, dueReturnsSomeOverdue, excludedIntermediaryFulfilled, excludedIntermediaryOpen, generateObligationsResponse, multipleActiveClientsNoPreviousClients, multipleData, noOverdueReturns, onlyPreviousRegistrations, returnsOverMultipleYears, returnsOverSixYears}
+import uk.gov.hmrc.iossintermediarydashboardstub.utils.ObligationsData.*
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import javax.inject.Inject
@@ -60,6 +60,12 @@ class EtmpController @Inject()(
             case "IN9002002002" =>
               generateObligationsResponse(
                 data = returnsOverSixYears,
+                dateRange = dateRange
+              )
+
+            case "IN9005999997" =>
+              generateObligationsResponse(
+                data = transferringMsid,
                 dateRange = dateRange
               )
 
