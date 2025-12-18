@@ -172,10 +172,10 @@ object ObligationsData {
   )
 
   val transferringMsid: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
-    "IM9005999997" -> Map(
+    "IM9005555551" -> Map(
       LocalDate.of(2024, 1, 1) -> Open
     ),
-    "IM9009999555" -> Map(
+    "IM9005555552" -> Map(
       LocalDate.of(2023, 12, 1) -> Fulfilled,
       LocalDate.of(2024, 1, 1) -> Fulfilled,
       LocalDate.of(2024, 2, 1) -> Open
