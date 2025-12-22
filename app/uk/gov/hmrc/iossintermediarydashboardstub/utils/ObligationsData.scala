@@ -215,6 +215,42 @@ object ObligationsData {
     )
   )
 
+  val multipleSavedReturns: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
+    "IM9006655441" -> Map(
+      LocalDate.of(2025, 3, 1) -> Open,
+      LocalDate.of(2025, 2, 1) -> Open,
+      LocalDate.of(2025, 1, 1) -> Open
+    ),
+    "IM9006655442" -> Map(
+      LocalDate.of(2025, 3, 1) -> Open,
+      LocalDate.of(2025, 2, 1) -> Open,
+      LocalDate.of(2025, 1, 1) -> Open
+    ),
+    "IM9006655443" -> Map(
+      LocalDate.of(2025, 3, 1) -> Open,
+      LocalDate.of(2025, 2, 1) -> Fulfilled,
+      LocalDate.of(2025, 1, 1) -> Fulfilled
+    )
+  )
+
+  val singleSavedReturn: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
+    "IM9006655551" -> Map(
+      LocalDate.of(2025, 3, 1) -> Open,
+      LocalDate.of(2025, 2, 1) -> Open,
+      LocalDate.of(2025, 1, 1) -> Open
+    ),
+    "IM9006655552" -> Map(
+      LocalDate.of(2025, 3, 1) -> Open,
+      LocalDate.of(2025, 2, 1) -> Open,
+      LocalDate.of(2025, 1, 1) -> Open
+    ),
+    "IM9006655553" -> Map(
+      LocalDate.of(2025, 3, 1) -> Open,
+      LocalDate.of(2025, 2, 1) -> Open,
+      LocalDate.of(2025, 1, 1) -> Open
+    )
+  )
+
   def generateObligationsResponse(
                                    data: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]],
                                    dateRange: ObligationsDateRange
