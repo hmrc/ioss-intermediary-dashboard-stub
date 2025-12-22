@@ -241,8 +241,8 @@ object ObligationsData {
     ),
     "IM9006655552" -> Map(
       LocalDate.of(2025, 3, 1) -> Open,
-      LocalDate.of(2025, 2, 1) -> Open,
-      LocalDate.of(2025, 1, 1) -> Open
+      LocalDate.of(2025, 2, 1) -> Fulfilled,
+      LocalDate.of(2025, 1, 1) -> Fulfilled
     ),
     "IM9006655553" -> Map(
       LocalDate.of(2025, 3, 1) -> Open,
