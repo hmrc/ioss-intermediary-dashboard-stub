@@ -135,6 +135,30 @@ class EtmpController @Inject()(
                 dateRange = dateRange
               )
 
+            case "IN9000306833" =>
+              generateObligationsResponse(
+                data = hmrcExcludedIntermediaryFulfilled,
+                dateRange = dateRange
+              )
+
+            case "IN9000306834" =>
+              generateObligationsResponse(
+                data = hmrcExcludedIntermediaryOpen,
+                dateRange = dateRange
+              )
+
+            case "IN9000306835" =>
+              generateObligationsResponse(
+                data = quarantinedIntermediaryFulfilled,
+                dateRange = dateRange
+              )
+
+            case "IN9000306836" =>
+              generateObligationsResponse(
+                data = quarantinedIntermediaryOpen,
+                dateRange = dateRange
+              )
+
             case _ =>
               generateObligationsResponse(
                 data = defaultData,
