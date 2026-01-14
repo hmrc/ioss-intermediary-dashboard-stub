@@ -160,6 +160,39 @@ object ObligationsData {
     )
   )
 
+  val excludedIntermediaryFulfilled2: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
+    "IM9001144667" -> Map(
+      LocalDate.now().minusMonths(9) -> Fulfilled,
+      LocalDate.now().minusMonths(8) -> Fulfilled
+    ),
+    "IM9001144668" -> Map(
+      LocalDate.now().minusMonths(9) -> Fulfilled,
+      LocalDate.now().minusMonths(8) -> Fulfilled
+    )
+  )
+
+  val excludedIntermediaryFulfilled3: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
+    "IM9001144669" -> Map(
+      LocalDate.now().minusMonths(6) -> Fulfilled,
+      LocalDate.now().minusMonths(5) -> Fulfilled
+    ),
+    "IM9001144670" -> Map(
+      LocalDate.now().minusMonths(6) -> Fulfilled,
+      LocalDate.now().minusMonths(5) -> Fulfilled
+    )
+  )
+
+  val excludedIntermediaryFulfilled4: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
+    "IM9001144671" -> Map(
+      LocalDate.now().minusMonths(3) -> Fulfilled,
+      LocalDate.now().minusMonths(2) -> Fulfilled
+    ),
+    "IM9001144672" -> Map(
+      LocalDate.now().minusMonths(3) -> Fulfilled,
+      LocalDate.now().minusMonths(2) -> Fulfilled
+    )
+  )
+
   val hmrcExcludedIntermediaryFulfilled: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
     "IM9000306834" -> Map(
       LocalDate.of(2025, 2, 1) -> Fulfilled,
@@ -228,16 +261,6 @@ object ObligationsData {
       LocalDate.of(2025, 3, 1) -> Open,
       LocalDate.of(2025, 2, 1) -> Open,
       LocalDate.of(2025, 1, 1) -> Open
-    ),
-    "IM9001144667" -> Map(
-      LocalDate.of(2025, 3, 1) -> Fulfilled,
-      LocalDate.of(2025, 2, 1) -> Fulfilled,
-      LocalDate.of(2025, 1, 1) -> Fulfilled
-    ),
-    "IM9001144668" -> Map(
-      LocalDate.of(2025, 3, 1) -> Fulfilled,
-      LocalDate.of(2025, 2, 1) -> Fulfilled,
-      LocalDate.of(2025, 1, 1) -> Fulfilled
     )
   )
 
