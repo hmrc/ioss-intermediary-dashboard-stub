@@ -177,6 +177,18 @@ class EtmpController @Inject()(
                 dateRange = dateRange
               )
 
+            case "IN9001230001" =>
+              generateObligationsResponse(
+                data = excludedIntermediaryFulfilled5,
+                dateRange = dateRange
+              )
+
+            case "IN9002230001" =>
+              generateObligationsResponse(
+                data = excludedIntermediaryFulfilled6,
+                dateRange = dateRange
+              )
+
             case _ =>
               generateObligationsResponse(
                 data = defaultData,
