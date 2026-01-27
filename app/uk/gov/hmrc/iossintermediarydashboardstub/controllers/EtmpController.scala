@@ -69,6 +69,12 @@ class EtmpController @Inject()(
                 dateRange = dateRange
               )
 
+            case "IN9005005005" =>
+              generateObligationsResponse(
+                data = returnsOverThreeYearsOneOpenOneFulfilled,
+                dateRange = dateRange
+              )
+
             case "IN9005999997" =>
               generateObligationsResponse(
                 data = transferringMsid,

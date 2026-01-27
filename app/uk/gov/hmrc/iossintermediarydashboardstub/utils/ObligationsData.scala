@@ -297,10 +297,29 @@ object ObligationsData {
 
   val returnsOverThreeYears: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
     "IM9004004004" -> Map(
-      LocalDate.now().minusYears(3).minusMonths(3) -> Fulfilled,
-      LocalDate.now().minusYears(3).minusMonths(2) -> Fulfilled,
+      LocalDate.now().minusYears(3).minusMonths(3) -> Open,
+      LocalDate.now().minusYears(3).minusMonths(2) -> Open,
       LocalDate.now().minusYears(3).minusMonths(1) -> Fulfilled,
-      LocalDate.now().minusYears(2) -> Fulfilled,
+      LocalDate.now().minusYears(3) -> Fulfilled,
+      LocalDate.now().minusYears(2).minusMonths(11) -> Fulfilled,
+      LocalDate.now().minusYears(2).minusMonths(10) -> Fulfilled
+    )
+  )
+
+  val returnsOverThreeYearsOneOpenOneFulfilled: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
+    "IM9005005005" -> Map(
+      LocalDate.now().minusYears(3).minusMonths(3) -> Open,
+      LocalDate.now().minusYears(3).minusMonths(2) -> Open,
+      LocalDate.now().minusYears(3).minusMonths(1) -> Open,
+      LocalDate.now().minusYears(3) -> Open,
+      LocalDate.now().minusYears(2).minusMonths(11) -> Open,
+      LocalDate.now().minusYears(2).minusMonths(10) -> Open
+    ),
+    "IM9005005555" -> Map(
+      LocalDate.now().minusYears(3).minusMonths(3) -> Open,
+      LocalDate.now().minusYears(3).minusMonths(2) -> Open,
+      LocalDate.now().minusYears(3).minusMonths(1) -> Fulfilled,
+      LocalDate.now().minusYears(3) -> Fulfilled,
       LocalDate.now().minusYears(2).minusMonths(11) -> Fulfilled,
       LocalDate.now().minusYears(2).minusMonths(10) -> Fulfilled
     )
