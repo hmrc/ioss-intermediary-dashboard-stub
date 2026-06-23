@@ -114,6 +114,13 @@ object ObligationsData {
     ),
   )
 
+  val excludedIntermediaryGlobalRegistration: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
+    "IM9001236666" -> Map(
+      LocalDate.of(2025, 2, 1) -> Open,
+      LocalDate.of(2025, 1, 1) -> Fulfilled
+    )
+  )
+
   val dueReturnsSomeOverdue: Map[String, Map[LocalDate, EtmpObligationsFulfilmentStatus]] = Map(
     "IM9001144877" -> Map(
       LocalDate.now().minusMonths(2) -> Fulfilled,
